@@ -1,19 +1,26 @@
 <#
-Find count where the sum of 3 consecutive elements at pos x is less than the sum of the 3 consecutive elements at pos x+1
+Find count where the next array element is greater than the previous one
 #>
 
 $strarray = Get-Content ina.txt
 $answer = 0
-$prev = 9999999999
+$xpos = 0
+$ypos = 0
+$aim = 0
 
-for ($i = 0; $i -lt ($strarray.Count - 2);$i++) {
-    $curr = ([int]$strarray[$i]) + ([int]$strarray[$i+1]) + ([int]$strarray[$i+2])
-
-    if ($curr -gt $prev) {
-        $answer = $answer + 1
+foreach ($line in $strarray) {
+    $move = $line -split " "
+    $dir = $move[0]
+    $distance = $move[1]
+    if ($dir -eq "forward") {
+        $xpos += $distance
+        $ypos += $distance * $aim
+    } elseif ($dir -eq "down") {
+        $aim += $distance
+    } elseif ($dir -eq "up") {
+        $aim -= $distance
     }
-
-    $prev = $curr
 }
 
-Write-Host $answer
+Write-Host $xpos $ypos
+Write-Host $($xpos*$ypos)
