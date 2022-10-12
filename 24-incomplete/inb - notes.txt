@@ -1,0 +1,252 @@
+inp w 		#w <- digit0 ###################################################################
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 14
+eql x w
+eql x 0		#x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		# y <- 26
+mul z y
+mul y 0
+add y w		# y <- digit0
+add y 1		# y <- digit0 + 1
+mul y x 
+add z y		# z <- digit0 + 1
+inp w		# w <- digit1 ###################################################################
+mul x 0
+add x z		# x <- digit0 + 1
+mod x 26
+div z 1
+add x 15	# x <- digit0 + 16
+eql x w		
+eql x 0		# x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		# y <- 26
+mul z y		# z <- 26(digit0 + 1)
+mul y 0
+add y w		# y <- digit1
+add y 7		# y <- digit1 + 7
+mul y x
+add z y		# z <- 26(digit0 + 1) + digit1 + 7
+inp w		# w <- digit2 ###################################################################
+mul x 0
+add x z		# x <- 26(digit0 + 1) + digit1 + 7 = 26digit0 + digit1 + 33
+mod x 26	# x <- (26digit0 + digit1 + 33) % 26 = (0 + digit1 + 7) % 26 = digit1 + 7
+div z 1
+add x 15	# x <- digit1 + 7 + 15 = digit1 + 22
+eql x w
+eql x 0		# x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		# y <- 26
+mul z y		# z <- 26(26(digit0 + 1) + digit1 + 7)
+mul y 0		
+add y w		# y <- digit2
+add y 13	# y <- digit2 + 13
+mul y x		
+add z y		# z <- 26(26(digit0 + 1) + digit1 + 7) + digit2 + 13
+inp w		# w <- digit3 ###################################################################
+mul x 0
+add x z		# x <- 26(26(digit0 + 1) + digit1 + 7) + digit2 + 13
+mod x 26	# x <- digit2 + 13
+div z 26	# z <- 26(digit0 + 1) + digit1 + 7
+add x -6	# x <- digit2 + 7
+eql x w
+eql x 0		# x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		# y <- 26
+mul z y		# z <- 26(26(digit0 + 1) + digit1 + 7)
+mul y 0
+add y w
+add y 10	# y <- digit3 + 10
+mul y x
+add z y		# z <- 26(26(digit0 + 1) + digit1 + 7) + digit3 + 10
+inp w		# w <- digit4 ###################################################################
+mul x 0
+add x z		# x <- 26(26(digit0 + 1) + digit1 + 7) + digit3 + 10
+mod x 26	# x <- digit3 + 10
+div z 1
+add x 14	# x <- digit3 + 24
+eql x w
+eql x 0		# x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		# y <- 26
+mul z y		# z <- 26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)
+mul y 0
+add y w
+add y 0
+mul y x		# y <- digit4
+add z y		# z <- 26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10) + digit4
+inp w		# w <- digit5 ###################################################################
+mul x 0
+add x z		
+mod x 26	# x <- digit4
+div z 26	# z <- 26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)
+add x -4	# x <- digit4 - 4
+eql x w		# IF DIGIT5 = DIGIT4 - 4 
+eql x 0		# IF !(DIGIT5 = DIGIT4 - 4) #BRANCH1-FALSE
+mul y 0
+add y 25
+mul y x
+add y 1		# y <- 1
+mul z y
+mul y 0
+add y w
+add y 13	# y <- digit5 + 13
+mul y x		# y <- 0
+add z y		# z <- 26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)
+inp w		# w <- digit6 ###################################################################
+mul x 0
+add x z
+mod x 26	# x <- 0
+div z 1
+add x 15	# x <- 15
+eql x w
+eql x 0		# x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		#y <- 26
+mul z y		#z <- 26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10))
+mul y 0
+add y w
+add y 11	#y <- digit6 + 11
+mul y x
+add z y		#z <- 26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11
+inp w		#w <- digit7 ###################################################################
+mul x 0
+add x z		#x <- 26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11
+mod x 26	#dm
+div z 1
+add x 15	#dm
+eql x w
+eql x 0		#x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11)
+mul y 0
+add y w		#y <- digit7
+add y 6		#y <- digit7 + 6
+mul y x
+add z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11) + digit7 + 6
+inp w		#w <- digit8 ###################################################################
+mul x 0
+add x z
+mod x 26	#dm
+div z 1
+add x 11	#dm
+eql x w
+eql x 0		#x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		#y <- 26
+mul z y		#z <- 26(26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11) + digit7 + 6)
+mul y 0
+add y w
+add y 1		#y <- digit8 + 1
+mul y x
+add z y		#z <- 26(26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11) + digit7 + 6) + digit8 + 1
+inp w		#w <- digit9 ###################################################################
+mul x 0
+add x z
+mod x 26	#x <- digit8 + 1
+div z 26	#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11) + digit7 + 6
+add x 0
+eql x w
+eql x 0		#IF !(DIGIT9 = DIGIT8 + 1) BRANCH2-FALSE X=0
+mul y 0
+add y 25
+mul y x
+add y 1		#y <- 1
+mul z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11) + digit7 + 6
+mul y 0
+add y w
+add y 7		#y <- digit9 + 7
+mul y x		#y <- 0
+add z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11) + digit7 + 6
+inp w		#w <- digit10 ###################################################################
+mul x 0
+add x z
+mod x 26	#x <- digit7 + 6
+div z 26	#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11)
+add x 0
+eql x w
+eql x 0		#IF !(DIGIT10 = DIGIT7 + 6) BRANCH3-FALSE X=0
+mul y 0
+add y 25
+mul y x
+add y 1		#y <- 1
+mul z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11)
+mul y 0
+add y w
+add y 11	#y <- digit10 + 11
+mul y x		#y <- 0
+add z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11)
+inp w		#w <- digit11 ###################################################################
+mul x 0
+add x z
+mod x 26	#x <- 0
+div z 26	#z <- 26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11
+add x -3	#x <- -3
+eql x w
+eql x 0		#x <- 1
+mul y 0
+add y 25
+mul y x
+add y 1		#y <- 26
+mul z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11)
+mul y 0
+add y w
+add y 14	#y <- digit11 + 14
+mul y x
+add z y		#z <- 26(26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11) + digit11 + 14
+inp w		#w <- digit12 ###################################################################
+mul x 0
+add x z
+mod x 26	#x <- digit11 + 14
+div z 26	#z <- 26(26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)) + digit6 + 11
+add x -9	#x <- digit11 + 5
+eql x w
+eql x 0		#IF !(DIGIT12 = DIGIT11 + 5) BRANCH4-FALSE X=0
+mul y 0
+add y 25
+mul y x
+add y 1		#y <- 1
+mul z y
+mul y 0
+add y w
+add y 4
+mul y x		#y <- 0
+add z y
+inp w		#w <- digit13 ###################################################################
+mul x 0
+add x z
+mod x 26	#x <- digit6 + 11
+div z 26	#z <- 26(26(digit0 + 1) + digit1 + 7) + digit3 + 10)
+add x -9	#x <- digit6 + 2
+eql x w
+eql x 0		#IF !(DIGIT13 = DIGIT6 + 2) BRANCH5-FALSE X=0
+mul y 0
+add y 25
+mul y x
+add y 1		#y <- 1
+mul z y
+mul y 0
+add y w
+add y 10	#y <- digit13 + 10
+mul y x		#y <- 0
+add z y
